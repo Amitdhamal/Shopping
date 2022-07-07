@@ -1,0 +1,16 @@
+{
+    "list":[
+        {
+          "itemName" : "Product 1",
+          "imageURl" : "https://thumbs.dreamstime.com/b/healthy-food-selection-healthy-food-selection-fruits-vegetables-seeds-superfood-cereals-gray-background-121936825.jpg",
+          "qty" : 3,
+          "cost":450
+        },
+        {
+            "itemName" : "Product 1",
+            "imageURl" : "https://thumbs.dreamstime.com/b/healthy-food-selection-healthy-food-selection-fruits-vegetables-seeds-superfood-cereals-gray-background-121936825.jpg",
+            "qty" : 3,
+            "cost":450
+        }
+      ]
+    }

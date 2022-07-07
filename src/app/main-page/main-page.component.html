@@ -1,0 +1,116 @@
+<div class="container">
+    <nav class="py-4 bg-light">
+        <div class="row text-right">
+            <div class="col-sm-12">
+                <button class="btn btn-danger mr-3" data-toggle="modal" data-target="#exampleModal"
+                    (click)="openModal()">Buy Now</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="row">
+        <div *ngFor="let item of CartList">
+            <div class="col-sm-4 mt-3">
+                <div class="card" style="width: 18rem;">
+                    <img [src]="item.imageURl" class="card-img-top" alt="no img">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{item.itemName}}</h5>
+
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item text-danger text-center">$ <span>{{item.cost}}</span></li>
+                        <li class="list-group-item text-danger">
+                            <div class="row text-center ml-5">
+                                
+                                        <button type="button" class="btn btn-secondary" (click)="decremnt(item)">-</button>
+                                        <input type="number" class="col-sm-4 mx-2" value={{item.qty}}>
+                                        <button type="button" class="btn btn-secondary" (click)="incremnt(item)">+</button>
+                                    
+                             
+                            </div>
+                            
+                        </li>
+                    </ul>
+                    <div class="card-body">
+                        <button class="btn btn-primary" (click)="addToBag(item)">Add to Bag</button>
+                        <button class="btn btn-danger ml-2" (click)="deleteCartItem(item.id)">delete item</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row"  *ngIf="bagList.length != 0">
+        <h5 class="mt-3 col-sm-12">Bag List</h5>
+
+        <table class="table col-sm-9">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">itemName</th>
+                <th scope="col">cost</th>
+                <th scope="col">qty</th>
+                <th scope="col">Total cost</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of bagList">
+                <th scope="row">{{item.id}}</th>
+                <td>{{item.itemName}}</td>
+                <td>{{item.cost}}</td>
+                <td>{{item.qty}}</td>
+                <td>{{item.qty * item.cost}}</td>
+                <td>
+                    <div class=" btn btn-danger" (click)="deleteBagItem(item.id)">delete</div>
+                </td>
+              </tr>
+            </tbody>
+        </table>  
+        <!-- <ul class="list-group col-sm-9">
+            
+                <li class="list-group-item" (click)="a()" *ngFor="let item of bagList">
+                    <div class="row">
+                        <div class="col-sm-8">{{item.itemName}}</div>
+                        <div class="col-sm-2">{{item.qty}}</div>
+                        <div class="col-sm-2 btn btn-danger" (click)="deleteBagItem(item.id)">delete</div>
+                    </div>
+                </li>
+            
+            
+            
+        </ul> -->
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form [formGroup]="myForm" (ngSubmit)="onSubmit($event)">
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="itemName">Product Name</label>
+                            <input type="text" class="form-control" id="itemName" formControlName="itemName"  placeholder="">
+                            <label for="imageURl">Image URL</label>
+                            <input type="text" class="form-control" id="imgUrl" formControlName="imgUrl" placeholder="">
+                            <label for="qty">Qty</label>
+                            <input type="number" class="form-control" id="qty" formControlName="qty" placeholder="">
+                            <label for="cost">cost</label>
+                            <input type="number" class="form-control" id="cost" formControlName="cost" placeholder="">
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
